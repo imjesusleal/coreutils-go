@@ -2,7 +2,7 @@ pipeline {
     agent any
         stage('testing Jenkinsfile') {
             stages {
-                sh 'echo Hello world'
+                sh echo 'Trying this out on main.'
             }
         }
 }
