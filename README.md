@@ -10,30 +10,30 @@ These are just simple exercises to develop some logic and knowledge about coreut
 
 If you want to install this project follow the next steps: 
 
----
+```bash
 git clone https://github.com/imjesusleal/coreutils-go
----
+```
 
----
+```bash
 cd coreutils-go
----
+```
 
 After that, be sure to have set your $GOPATH variable, to check your path where binaries will be installed, run the following command: 
 
----
+```bash
 go env | grep $GOPATH
----
+```
 
 or 
 
----
+```bash
 go env $GOPATH
----
+```
 
 That's the path your binaries will be installed. Go ahead and build and install the project:
 
----
+```bash
 go install 
----
+```
 
 and that's it. Go have fun.
