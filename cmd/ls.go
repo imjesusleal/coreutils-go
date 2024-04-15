@@ -17,6 +17,7 @@ var lsCmd = &cobra.Command{
     Use: "ls",
     Short: "listing of directory", 
     Example: "cobra ls",
+
     Run: func(cmd *cobra.Command, args []string) {
         lsFlag,_ := cmd.Flags().GetBool("long")
         if lsFlag ==  false {

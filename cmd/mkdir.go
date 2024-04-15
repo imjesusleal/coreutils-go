@@ -41,7 +41,6 @@ func mkdirFuncToTarget(argv ...[]string) {
         name = v[0]
         target = v[1]
     }
-
     os.Chdir(target)
     err := os.Mkdir(name, 0755)
     check(err)
