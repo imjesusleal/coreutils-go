@@ -12,11 +12,11 @@ var mkdirCmd = &cobra.Command {
     Example: "cobra mkdir [directory-name] [flags]",
     Args: cobra.MinimumNArgs(1),
     Run: func(cmd *cobra.Command, args []string) {
-        targetPath,_ := cmd.Flags().GetBool("directory")
-        if targetPath == false {
+        targetPath,_ := cmd.Flags().GetString("directory")
+        if len(targetPath) == 0 {
             mkdirFunc(args)        
         } else {
-            mkdirFuncToTarget(args)
+            mkdirFuncToTarget(args[0], targetPath)
         }
     },
 
@@ -34,14 +34,8 @@ func mkdirFunc(argv ...[]string) {
     } 
 } 
 
-func mkdirFuncToTarget(argv ...[]string) {
-    var name string
-    var target string
-    for _,v := range argv {
-        name = v[0]
-        target = v[1]
-    }
+func mkdirFuncToTarget(argv string, target string) {
     os.Chdir(target)
-    err := os.Mkdir(name, 0755)
+    err := os.Mkdir(argv, 0755)
     check(err)
 }

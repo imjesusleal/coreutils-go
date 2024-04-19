@@ -17,12 +17,12 @@ func Execute() error {
 
 func init() {
     var longListing bool
-    var targetPath bool 
+    var targetPath string 
 
     rootCmd.PersistentFlags().StringP("author", "a", "Jesus Leal", "Created by Jesus Leal.")
     viper.BindPFlag("author", rootCmd.PersistentFlags().Lookup("author"))
     lsCmd.PersistentFlags().BoolVarP(&longListing, "long", "l", false, "print long format.")
-    mkdirCmd.PersistentFlags().BoolVarP(&targetPath, "directory", "d", false, "create a directory on the target path")
+    mkdirCmd.PersistentFlags().StringP("directory", "d",targetPath, "create directory in the targetpath")
 
     rootCmd.AddCommand(newCat.value)
     rootCmd.AddCommand(lsCmd)
