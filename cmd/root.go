@@ -27,6 +27,7 @@ func init() {
     rootCmd.AddCommand(newCat.value)
     rootCmd.AddCommand(lsCmd)
     rootCmd.AddCommand(mkdirCmd)
+    rootCmd.AddCommand(cpCmd)
 }
 
 
