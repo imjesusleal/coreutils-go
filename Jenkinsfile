@@ -2,6 +2,15 @@ pipeline {
     agent any
 
         stages {
+
+            withCredentials([usernamePassword(credentialsId: 'e4b9a7a1-5ad0-49b7-977b-58ae06b9cf26', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                sh '''
+                    git config --global user.name "${GIT_USERNAME}"
+                    git config --global user.password "${GIT_PASSWORD}"
+                    git push --set-upstream origin main
+                    '''
+            }
+
             stage('Build') {
                 steps {
                     sh 'make clean build rename'
