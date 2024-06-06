@@ -14,11 +14,10 @@ pipeline {
                             sh '''
                                 git config --global user.name "${GIT_USERNAME}"
                                 git config --global user.password "${GIT_PASSWORD}"
-                                git push --set-upstream origin main
                                 '''
                         }
                         sh 'git tag -a v1.1.2 -m "Release v1.1.2"'
-                            sh 'git push origin v1.1.2'
+                        sh 'git push origin v1.1.2'
                     }
                 }
             }
