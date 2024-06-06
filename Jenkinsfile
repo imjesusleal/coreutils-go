@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    triggers {
+        githubPush()
+    }
 
     environment {
         GITHUB_REPO = 'usuario/repositorio'
