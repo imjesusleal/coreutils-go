@@ -1,42 +1,35 @@
 pipeline {
     agent any
     
-    triggers {
-        githubPush()
-    }
-
     environment {
-        GITHUB_REPO = 'usuario/repositorio'
-        GITHUB_CREDENTIALS_ID = 'github-credentials-id'
+        SSH_PRIVATE_KEY = credentials(4227d049-af06-4906-ab84-71b312604ddc)
     }
 
     stages {
-        stage('Checkout') {
+        stage('Clonar Repositorio') {
             steps {
-                checkout scm
+                // Configurar la clave SSH
+                script {
+                    sh 'chmod 600 id_rsa'
+                    sh 'eval $(ssh-agent -s)'
+                    sh 'ssh-add id_rsa'
+                }
+                git credentialsId: '', url: '4227d049-af06-4906-ab84-71b312604ddc'
             }
         }
         stage('Build') {
             steps {
-                sh 'make clean build'
+                sh 'make clean build release'
             }
         }
-        stage('Create GitHub Release') {
+        stage('Crear Release') {
             steps {
+                // Crear un release en GitHub
                 script {
-                    def releaseName = "v${env.VERSION}"
-
-                    withCredentials([usernamePassword(credentialsId: env.GITHUB_CREDENTIALS_ID, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        githubRelease createRelease: true,
-                                      releaseName: releaseName,
-                                      tagName: releaseName,
-                                      repoName: env.GITHUB_REPO,
-                                      token: env.PASSWORD,
-                                      body: "Release ${releaseName}"
-                    }
+                    sh 'git tag -a v1.1.2 -m "Release v1.1.2"'
+                    sh 'git push origin v1.1.2'
                 }
             }
         }
     }
 }
-
