@@ -14,6 +14,7 @@ pipeline {
                             sh '''
                                 git config --global user.name "${GIT_USERNAME}"
                                 git config --global user.password "${GIT_PASSWORD}"
+                                git checkout -b main
                                 git push --set-upstream origin main
                                 '''
                         }
