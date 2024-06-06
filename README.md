@@ -36,4 +36,6 @@ That's the path your binaries will be installed. Go ahead and build and install 
 go install 
 ```
 
-and that's it. Go have fun.
+# Build from source
+
+You can also build it from source with the releases on this project. Feel free to download it and play with it.
