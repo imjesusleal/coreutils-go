@@ -4,7 +4,7 @@ pipeline {
         stages {
             stage('Build') {
                 steps {
-                    sh 'make clean build release'
+                    sh 'make clean build rename'
                 }
             }
 
