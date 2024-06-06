@@ -9,7 +9,7 @@ pipeline {
         stage('Clonar Repositorio') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: '4227d049-af06-4906-ab84-71b312604ddc', keyFileVariable: 'SSH_PRIVATE_KEY')]) {
-                    git branch: 'main', credentialsId: '', url: 'git@github.com:imjesusleal/coreutils-go.git'
+                    git branch: 'main', url: 'git@github.com:imjesusleal/coreutils-go.git'
                 }
             }
         }
